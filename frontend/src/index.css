@@ -1,0 +1,380 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+  font-family: Inter, 'Segoe UI', sans-serif;
+  background: #170f0c;
+  color: #edf7f1;
+  --wood-950: #120d09;
+  --wood-900: #1d140f;
+  --wood-800: #2d1d14;
+  --wood-700: #4a2f20;
+  --wood-600: #6b472d;
+  --green-950: #0e2d29;
+  --green-900: #113c35;
+  --green-700: #255c50;
+  --green-500: #2d876a;
+  --green-400: #45ad7b;
+  --red-600: #b93d35;
+  --red-500: #d94a3f;
+  --steel-100: #effaf3;
+  --steel-200: #dfeee5;
+  --oak-shadow: rgba(15, 8, 4, 0.58);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.scroll-reveal {
+  opacity: 0;
+  transform: translate3d(0, 42px, 0) scale(0.98);
+  filter: blur(8px);
+  transition:
+    opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform, filter;
+}
+
+.scroll-reveal.is-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+  filter: blur(0);
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background:
+    linear-gradient(135deg, rgba(21, 13, 9, 0.84), rgba(17, 39, 31, 0.82)),
+    url('/src/HD Bamboo Backgrounds.jpeg') center/cover no-repeat fixed;
+  color: var(--steel-100);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.app-shell-screen {
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.app-shell-panel {
+  height: calc(100vh - 5.5rem);
+  max-height: calc(100vh - 5.5rem);
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+}
+
+@media (max-width: 640px) {
+  body {
+    min-width: 320px;
+  }
+
+  .app-shell-panel {
+    width: min(82vw, 240px);
+    left: 0.75rem;
+    top: 4.6rem;
+    height: calc(100vh - 5rem);
+    max-height: calc(100vh - 5rem);
+  }
+
+  .app-shell-screen {
+    background-position: center center;
+  }
+
+  .hero-grid {
+    background-size: 20px 20px;
+  }
+
+  .map-panel {
+    background-size: 18px 18px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .app-shell-panel {
+    width: 250px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .app-shell-panel {
+    width: 270px;
+  }
+}
+
+.hero-grid {
+  background-image: linear-gradient(rgba(239, 246, 240, 0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(239, 246, 240, 0.06) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+.map-panel {
+  background-image: linear-gradient(rgba(239, 246, 240, 0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(239, 246, 240, 0.06) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.google-map-panel {
+  background:
+    linear-gradient(135deg, rgba(18, 32, 27, 0.92), rgba(30, 28, 24, 0.72)),
+    linear-gradient(0deg, rgba(210, 232, 221, 0.08), rgba(210, 232, 221, 0.08));
+  min-height: 360px;
+  animation: fadeUp 0.8s ease-out both;
+}
+
+.hero-grid {
+  animation: fadeUp 0.7s ease-out both;
+}
+
+.bamboo-panel > * {
+  animation: fadeUp 0.9s ease-out both;
+}
+
+.hero-card-float,
+.map-pin,
+.map-road,
+.status-rail,
+.metric-card,
+.feature-card,
+.ops-panel,
+.map-flag {
+  animation: floatMap 4.2s ease-in-out infinite;
+}
+
+.hero-card-float {
+  animation: floatMap 5s ease-in-out infinite, fadeUp 0.8s ease-out both;
+}
+
+.metric-card,
+.feature-card,
+.ops-panel,
+.map-flag {
+  animation: fadeUp 0.9s ease-out both, floatMap 5s ease-in-out infinite;
+}
+
+.cta-button,
+.green-button,
+.wood-button,
+.red-button {
+  animation: pulseGlow 2.8s ease-in-out infinite;
+}
+
+.map-pin {
+  animation: pulseGlow 2.4s ease-in-out infinite, floatMap 4s ease-in-out infinite;
+}
+
+.google-map-panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size: 28px 28px;
+  opacity: 0.7;
+}
+
+.map-road {
+  position: absolute;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.06);
+}
+
+.map-road-one {
+  left: 12%;
+  top: 22%;
+  width: 62%;
+  height: 8px;
+  transform: rotate(18deg);
+}
+
+.map-road-two {
+  left: 20%;
+  top: 48%;
+  width: 55%;
+  height: 8px;
+  transform: rotate(-12deg);
+}
+
+.map-road-three {
+  left: 26%;
+  top: 16%;
+  width: 7px;
+  height: 70%;
+  transform: rotate(8deg);
+}
+
+.map-road-four {
+  left: 46%;
+  top: 10%;
+  width: 7px;
+  height: 70%;
+  transform: rotate(-8deg);
+}
+
+.map-road-five {
+  left: 8%;
+  top: 58%;
+  width: 70%;
+  height: 7px;
+  transform: rotate(-24deg);
+}
+
+.map-road-six {
+  left: 42%;
+  top: 38%;
+  width: 42%;
+  height: 8px;
+  transform: rotate(12deg);
+}
+
+.map-pin {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 0 5px rgba(16, 185, 129, 0.12), 0 0 20px rgba(16, 185, 129, 0.38);
+}
+
+.map-pin-main {
+  background: #34d399;
+}
+
+.map-pin-danger {
+  background: #f87171;
+  box-shadow: 0 0 0 5px rgba(248, 113, 113, 0.12), 0 0 20px rgba(248, 113, 113, 0.4);
+}
+
+.card-glow {
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), 0 30px 60px rgba(0,0,0,0.4), 0 0 0 1px rgba(69, 173, 123, 0.16);
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes floatMap {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes revealIn {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 0 rgba(52, 211, 153, 0.2);
+    transform: translateY(0px);
+  }
+  50% {
+    box-shadow: 0 0 26px rgba(52, 211, 153, 0.24);
+    transform: translateY(-2px);
+  }
+}
+
+.reveal-inline,
+.reveal-copy,
+.reveal-heading {
+  opacity: 0;
+  animation: revealIn 0.7s ease-out forwards;
+}
+
+.reveal-heading {
+  display: inline-block;
+}
+
+.reveal-word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(16px);
+  margin-right: 0.22em;
+  animation: revealIn 0.5s ease-out forwards;
+}
+
+.reveal-word:last-child {
+  margin-right: 0;
+}
+
+.bamboo-panel {
+  background:
+    linear-gradient(145deg, rgba(80, 52, 36, 0.96), rgba(35, 25, 18, 0.96));
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), inset 0 -1px 0 rgba(0,0,0,0.2), 0 18px 34px rgba(0,0,0,0.28);
+}
+
+.side-panel {
+  background: linear-gradient(180deg, rgba(16, 32, 27, 0.92), rgba(35, 19, 12, 0.9));
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.05), 0 16px 28px rgba(0,0,0,0.24);
+}
+
+.status-rail {
+  background: linear-gradient(180deg, rgba(94, 70, 49, 0.55), rgba(34, 38, 32, 0.5));
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.bamboo-hero {
+  background:
+    linear-gradient(135deg, rgba(11, 25, 21, 0.4), rgba(26, 18, 10, 0.28)),
+    url('https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=900&q=80') center/cover no-repeat;
+}
+
+.bamboo-nav {
+  background:
+    linear-gradient(135deg, rgba(39, 23, 14, 0.92), rgba(17, 35, 29, 0.9)),
+    url('https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?auto=format&fit=crop&w=500&q=80') center/cover no-repeat;
+  border: 1px solid rgba(255,255,255,0.07);
+}
+
+.wood-button {
+  background: linear-gradient(180deg, rgba(96, 66, 43, 0.98), rgba(58, 40, 28, 0.96));
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.1), 0 8px 18px rgba(0,0,0,0.24);
+}
+
+.green-button {
+  background: linear-gradient(180deg, rgba(45, 135, 106, 0.98), rgba(21, 90, 75, 0.96));
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.15), 0 10px 18px rgba(14, 45, 41, 0.32);
+}
+
+.red-button {
+  background: linear-gradient(180deg, rgba(217, 74, 63, 0.98), rgba(143, 40, 36, 0.95));
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.15), 0 10px 18px rgba(97, 23, 18, 0.28);
+}
+
+.skew-surface {
+  transform: skewY(-1deg);
+}
+
+.skew-surface > * {
+  transform: skewY(1deg);
+}
